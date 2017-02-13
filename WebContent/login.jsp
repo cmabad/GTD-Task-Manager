@@ -8,8 +8,12 @@
  	<hr><br>
  	<table align="center">
     	<tr> 
-    		<td align="right">Su identificador de usuario</td>
+    		<td align="right">Su identificador de usuario: </td>
 	    	<td><input type="text" name="nombreUsuario" align="left" size="15"></td>
+      	</tr>
+      	<tr> 
+    		<td align="right">Constraseña: </td>
+	    	<td><input type="password" name="password" align="left" size="15"></td>
       	</tr>
       	<tr>
     	    <td><input type="submit" value="Enviar"/></td>
