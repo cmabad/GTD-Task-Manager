@@ -125,13 +125,14 @@ public class Controlador extends javax.servlet.http.HttpServlet {
 		Map<String,Accion> mapaRegistrado=new HashMap<String,Accion>();
 		mapaRegistrado.put("modificarDatos", new ModificarDatosAction());
 		mapaRegistrado.put("cerrarSesion", new CerrarSesionAction());
-		mapaRegistrado.put("listarTareas", new ListarTareasAction());
+		mapaRegistrado.put("listarTareas", new ListarTareasHoyAction());
 		mapaDeAcciones.put("USUARIO", mapaRegistrado);
 		
 		Map<String,Accion> mapaAdmin=new HashMap<String,Accion>();
 		mapaAdmin.put("modificarDatos", new ModificarDatosAction());
 		mapaAdmin.put("cerrarSesion", new CerrarSesionAction());
-		mapaAdmin.put("listarTareas", new ListarTareasAction());
+		mapaAdmin.put("listarTareas", new ListarTareasHoyAction());
+		mapaAdmin.put("administrarUsuarios", new AdministrarUsuariosAction());
 		mapaDeAcciones.put("ADMIN", mapaAdmin);
 	}
 	
@@ -204,6 +205,10 @@ public class Controlador extends javax.servlet.http.HttpServlet {
 		resultadoYJSP.put("EXITO","/listarTareas.jsp");
 		resultadoYJSP.put("FRACASO","/principalUsuario.jsp");
 		opcionResultadoYJSP.put("listarTareas", resultadoYJSP);
+		
+		resultadoYJSP=new HashMap<String,String>();
+		resultadoYJSP.put("EXITO","/userManagement.jsp");
+		resultadoYJSP.put("FRACASO","/principalUsuario.jsp");
 		
 		mapaDeNavegacion.put("ADMIN",opcionResultadoYJSP);
 		

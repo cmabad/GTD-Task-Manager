@@ -1,9 +1,12 @@
 package uo.sdi.business.impl.user;
 
+import java.util.List;
+
 import uo.sdi.business.UserService;
 import uo.sdi.business.exception.BusinessException;
 import uo.sdi.business.impl.command.CommandExecutor;
 import uo.sdi.business.impl.user.command.FindLoggableUSerCommand;
+import uo.sdi.business.impl.user.command.ListUsersCommand;
 import uo.sdi.business.impl.user.command.RegisterUserCommand;
 import uo.sdi.business.impl.user.command.UpdateUserDetailsCommand;
 import uo.sdi.dto.User;
@@ -31,6 +34,11 @@ public class UserServiceImpl implements UserService {
 		return new CommandExecutor<User>().execute( 
 				new FindLoggableUSerCommand<User>(login, password) 
 		);
+	}
+
+	@Override
+	public List<User> listUsers() throws BusinessException {
+		return new CommandExecutor<List<User>>().execute(new ListUsersCommand());
 	}
 
 }
