@@ -6,7 +6,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
 <html>
 <head>
-<title>TaskManager - Listado de Tareas del Usuario</title>
+<title>TaskManager - Listado de Tareas de esta Semana del Usuario</title>
 <style>
     .red    {
         color: red;
@@ -21,7 +21,7 @@
 				<th>Titulo</th>
 				<th>Planeado</th>
 			</tr>
-		<c:forEach var="entry" items="${listaTareas}" varStatus="i">
+		<c:forEach var="entry" items="${listaTareasSemana}" varStatus="i">
 			<tr id="item_${i.index}">
 				<td><a href="mostrarTareas?id=${entry.id}">${entry.id}</a></td>
 				<c:forEach var="cat" items="${listaCategorias}" varStatus="j">

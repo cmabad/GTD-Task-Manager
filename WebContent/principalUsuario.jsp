@@ -49,7 +49,11 @@
 		</tr>
 	</table>
 	<br/>
-	<a id="listarTareas" href="listarTareas">Mostrar Tareas</a>
+	<a id="listarTareasInbox" href="listarTareasInbox">Mostrar Inbox de Tareas</a>
+	<br/>
+	<a id="listarTareas" href="listarTareas">Mostrar Tareas Hoy</a>
+	<br/>
+	<a id="listarTareasSemana" href="listarTareasSemana">Mostrar Tareas de esta Semana</a>
 	<br/>	
 	<a id="cerrarSesion_link_id" href="cerrarSesion">Cerrar sesión</a>
 	

@@ -6,7 +6,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
 <html>
 <head>
-<title>TaskManager - Listado de Tareas del Usuario</title>
+<title>TaskManager - Listado de Tareas del Inbox del Usuario</title>
 <style>
     .red    {
         color: red;
@@ -17,25 +17,14 @@
 	<table border="1" align="center">
 			<tr>
 				<th>ID</th>
-				<th>Categoria</th>
 				<th>Titulo</th>
 				<th>Planeado</th>
 			</tr>
-		<c:forEach var="entry" items="${listaTareas}" varStatus="i">
+		<c:forEach var="entry" items="${listaTareasInbox}" varStatus="i">
 			<tr id="item_${i.index}">
 				<td><a href="mostrarTareas?id=${entry.id}">${entry.id}</a></td>
-				<c:forEach var="cat" items="${listaCategorias}" varStatus="j">
-				<c:choose>
-					<c:when test="${cat.id eq entry.categoryId}">
-						<td>${cat.name}</td>
-					</c:when>
-					<c:otherwise>
-		                
-		            </c:otherwise>
-				</c:choose>
-				</c:forEach>
 				<td>${entry.title}</td>
-				<c:choose>
+				 <c:choose>
 		            <c:when test="${entry.planned le today}">
 		                <td class="red"> ${entry.planned} </td> 
 		            </c:when>

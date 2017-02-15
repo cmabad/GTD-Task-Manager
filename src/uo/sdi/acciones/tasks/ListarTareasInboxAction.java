@@ -1,4 +1,4 @@
-package uo.sdi.acciones;
+package uo.sdi.acciones.tasks;
 
 import java.util.List;
 
@@ -6,6 +6,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import uo.sdi.acciones.Accion;
 import uo.sdi.business.Services;
 import uo.sdi.business.TaskService;
 import uo.sdi.business.exception.BusinessException;
@@ -13,7 +14,7 @@ import uo.sdi.dto.Task;
 import uo.sdi.dto.User;
 import alb.util.log.Log;
 
-public class ListarTareasAction implements Accion {
+public class ListarTareasInboxAction implements Accion {
 	
 	@Override
 	public String execute(HttpServletRequest request,
@@ -27,13 +28,13 @@ public class ListarTareasAction implements Accion {
 		
 		try {
 			TaskService taskService = Services.getTaskService();
-			listaTareas=taskService.findTodayTasksByUserId(user.getId());
-			request.setAttribute("listaTareas", listaTareas);
-			Log.debug("Obtenida lista de tareas conteniendo [%d] tareas", 
+			listaTareas=taskService.findInboxTasksByUserId(user.getId());
+			request.setAttribute("listaTareasInbox", listaTareas);
+			Log.debug("Obtenida lista de tareas de Inbox conteniendo [%d] tareas", 
 					listaTareas.size());
 		}
 		catch (BusinessException b) {
-			Log.debug("Algo ha ocurrido obteniendo lista de tareas: %s",
+			Log.debug("Algo ha ocurrido obteniendo lista de tareas de Inbox: %s",
 					b.getMessage());
 			resultado="FRACASO";
 		}

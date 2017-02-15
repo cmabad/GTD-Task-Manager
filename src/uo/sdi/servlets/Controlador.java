@@ -12,6 +12,10 @@ import javax.servlet.http.HttpSession;
 
 import alb.util.log.Log;
 import uo.sdi.acciones.*;
+import uo.sdi.acciones.tasks.ListarTareasHoyAction;
+import uo.sdi.acciones.tasks.ListarTareasInboxAction;
+import uo.sdi.acciones.tasks.ListarTareasPorCategoriaAction;
+import uo.sdi.acciones.tasks.ListarTareasSemanaAction;
 import uo.sdi.dto.User;
 import uo.sdi.persistence.PersistenceException;
 
@@ -126,12 +130,18 @@ public class Controlador extends javax.servlet.http.HttpServlet {
 		mapaRegistrado.put("modificarDatos", new ModificarDatosAction());
 		mapaRegistrado.put("cerrarSesion", new CerrarSesionAction());
 		mapaRegistrado.put("listarTareas", new ListarTareasHoyAction());
+		mapaRegistrado.put("listarTareasSemana", new ListarTareasSemanaAction());
+		mapaRegistrado.put("listarTareasInbox", new ListarTareasInboxAction());
+		mapaRegistrado.put("listarTareasPorCategoria", new ListarTareasPorCategoriaAction());
 		mapaDeAcciones.put("USUARIO", mapaRegistrado);
 		
 		Map<String,Accion> mapaAdmin=new HashMap<String,Accion>();
 		mapaAdmin.put("modificarDatos", new ModificarDatosAction());
 		mapaAdmin.put("cerrarSesion", new CerrarSesionAction());
 		mapaAdmin.put("listarTareas", new ListarTareasHoyAction());
+		mapaAdmin.put("listarTareasSemana", new ListarTareasSemanaAction());
+		mapaAdmin.put("listarTareasInbox", new ListarTareasInboxAction());
+		mapaAdmin.put("listarTareasPorCategoria", new ListarTareasPorCategoriaAction());
 		mapaAdmin.put("administrarUsuarios", new AdministrarUsuariosAction());
 		mapaDeAcciones.put("ADMIN", mapaAdmin);
 	}
@@ -182,6 +192,21 @@ public class Controlador extends javax.servlet.http.HttpServlet {
 		resultadoYJSP.put("FRACASO","/principalUsuario.jsp");
 		opcionResultadoYJSP.put("listarTareas", resultadoYJSP);
 		
+		resultadoYJSP=new HashMap<String, String>();
+		resultadoYJSP.put("EXITO","/listarTareasSemana.jsp");
+		resultadoYJSP.put("FRACASO","/principalUsuario.jsp");
+		opcionResultadoYJSP.put("listarTareasSemana", resultadoYJSP);
+		
+		resultadoYJSP=new HashMap<String, String>();
+		resultadoYJSP.put("EXITO","/listarTareasInbox.jsp");
+		resultadoYJSP.put("FRACASO","/principalUsuario.jsp");
+		opcionResultadoYJSP.put("listarTareasInbox", resultadoYJSP);
+		
+		resultadoYJSP=new HashMap<String, String>();
+		resultadoYJSP.put("EXITO","/listarTareasPorCategoria.jsp");
+		resultadoYJSP.put("FRACASO","/principalUsuario.jsp");
+		opcionResultadoYJSP.put("listarTareasPorCategoria", resultadoYJSP);
+		
 		mapaDeNavegacion.put("USUARIO",opcionResultadoYJSP);
 		
 		// Crear mapas auxiliares vacíos
@@ -205,6 +230,21 @@ public class Controlador extends javax.servlet.http.HttpServlet {
 		resultadoYJSP.put("EXITO","/listarTareas.jsp");
 		resultadoYJSP.put("FRACASO","/principalUsuario.jsp");
 		opcionResultadoYJSP.put("listarTareas", resultadoYJSP);
+		
+		resultadoYJSP=new HashMap<String, String>();
+		resultadoYJSP.put("EXITO","/listarTareasSemana.jsp");
+		resultadoYJSP.put("FRACASO","/principalUsuario.jsp");
+		opcionResultadoYJSP.put("listarTareasSemana", resultadoYJSP);
+		
+		resultadoYJSP=new HashMap<String, String>();
+		resultadoYJSP.put("EXITO","/listarTareasInbox.jsp");
+		resultadoYJSP.put("FRACASO","/principalUsuario.jsp");
+		opcionResultadoYJSP.put("listarTareasInbox", resultadoYJSP);
+		
+		resultadoYJSP=new HashMap<String, String>();
+		resultadoYJSP.put("EXITO","/listarTareasPorCategoria.jsp");
+		resultadoYJSP.put("FRACASO","/principalUsuario.jsp");
+		opcionResultadoYJSP.put("listarTareasPorCategoria", resultadoYJSP);
 		
 		resultadoYJSP=new HashMap<String,String>();
 		resultadoYJSP.put("EXITO","/userManagement.jsp");
