@@ -34,7 +34,7 @@ public class AdministrarUsuariosAction implements Accion {
 			Log.debug("Obtenida lista de usuarios para administrar");
 		}
 		catch (BusinessException b) {
-			Log.debug("Algo ha ocurrido obteniendo la lista de usuarios: %s",
+			Log.debug("Se ha producido un error obteniendo la lista de usuarios: %s",
 					b.getMessage());
 			resultado="FRACASO";
 		}

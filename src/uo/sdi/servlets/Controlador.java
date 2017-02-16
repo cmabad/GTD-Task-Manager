@@ -247,8 +247,9 @@ public class Controlador extends javax.servlet.http.HttpServlet {
 		opcionResultadoYJSP.put("listarTareasPorCategoria", resultadoYJSP);
 		
 		resultadoYJSP=new HashMap<String,String>();
-		resultadoYJSP.put("EXITO","/userManagement.jsp");
+		resultadoYJSP.put("EXITO","/administrarUsuarios.jsp");
 		resultadoYJSP.put("FRACASO","/principalUsuario.jsp");
+		opcionResultadoYJSP.put("administrarUsuarios", resultadoYJSP);
 		
 		mapaDeNavegacion.put("ADMIN",opcionResultadoYJSP);
 		
