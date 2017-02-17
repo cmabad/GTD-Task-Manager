@@ -124,6 +124,7 @@ public class Controlador extends javax.servlet.http.HttpServlet {
 		Map<String,Accion> mapaPublico=new HashMap<String,Accion>();
 		mapaPublico.put("validarse", new ValidarseAction());
 		mapaPublico.put("listarCategorias", new ListarCategoriasAction());
+		mapaPublico.put("registrarse", new RegistrarseAction());
 		mapaDeAcciones.put("ANONIMO", mapaPublico);
 		
 		Map<String,Accion> mapaRegistrado=new HashMap<String,Accion>();
@@ -168,6 +169,10 @@ public class Controlador extends javax.servlet.http.HttpServlet {
 		resultadoYJSP.put("EXITO","/login.jsp");
 		opcionResultadoYJSP.put("cerrarSesion", resultadoYJSP);
 		
+		resultadoYJSP = new HashMap<String, String>();
+		resultadoYJSP.put("FRACASO","/registro.jsp");
+		opcionResultadoYJSP.put("registrarse",resultadoYJSP);
+		
 		mapaDeNavegacion.put("ANONIMO",opcionResultadoYJSP);
 		
 		// Crear mapas auxiliares vacíos
@@ -206,6 +211,10 @@ public class Controlador extends javax.servlet.http.HttpServlet {
 		resultadoYJSP.put("EXITO","/listarTareasPorCategoria.jsp");
 		resultadoYJSP.put("FRACASO","/principalUsuario.jsp");
 		opcionResultadoYJSP.put("listarTareasPorCategoria", resultadoYJSP);
+		
+		resultadoYJSP = new HashMap<String, String>();
+		resultadoYJSP.put("EXITO","/principalUsuario.jsp");
+		opcionResultadoYJSP.put("registrarse",resultadoYJSP);
 		
 		mapaDeNavegacion.put("USUARIO",opcionResultadoYJSP);
 		
@@ -250,6 +259,10 @@ public class Controlador extends javax.servlet.http.HttpServlet {
 		resultadoYJSP.put("EXITO","/administrarUsuarios.jsp");
 		resultadoYJSP.put("FRACASO","/principalUsuario.jsp");
 		opcionResultadoYJSP.put("administrarUsuarios", resultadoYJSP);
+		
+		resultadoYJSP = new HashMap<String, String>();
+		resultadoYJSP.put("EXITO","/principalUsuario.jsp");
+		opcionResultadoYJSP.put("registrarse",resultadoYJSP);
 		
 		mapaDeNavegacion.put("ADMIN",opcionResultadoYJSP);
 		

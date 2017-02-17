@@ -16,6 +16,15 @@ public class User {
 	private Boolean isAdmin = false;
 	private UserStatus status = UserStatus.ENABLED;
 	
+	public User(){
+	}
+	
+	public User(String nombreUsuario, String email, String password) {
+		this.login = nombreUsuario;
+		this.email = email;
+		this.password = password;
+	}
+
 	public User setIsAdmin(Boolean isAdmin) {
 		this.isAdmin = isAdmin;
 		return this;
