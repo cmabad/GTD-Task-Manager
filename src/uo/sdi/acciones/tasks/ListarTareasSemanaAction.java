@@ -35,8 +35,11 @@ public class ListarTareasSemanaAction implements Accion {
 			listaCategorias=taskService.findCategoriesByUserId(user.getId());
 			request.setAttribute("listaTareas", listaTareas);
 			request.setAttribute("listaCategorias", listaCategorias);
+			
 			Log.debug("Obtenida lista de tareas de la Semana conteniendo [%d] tareas", 
 					listaTareas.size());
+			
+			session.setAttribute("listadoActual", "Semana");
 		}
 		catch (BusinessException b) {
 			Log.debug("Algo ha ocurrido obteniendo lista de tareas de la Semana: %s",

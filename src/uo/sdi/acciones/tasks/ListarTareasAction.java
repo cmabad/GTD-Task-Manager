@@ -36,6 +36,8 @@ public class ListarTareasAction implements Accion {
 			request.setAttribute("listaTareas", listaTareas);
 			Log.debug("Obtenida lista de tareas conteniendo [%d] tareas", 
 					listaTareas.size());
+			
+			session.setAttribute("listadoActual", "Hoy");
 		}
 		catch (BusinessException b) {
 			Log.debug("Algo ha ocurrido obteniendo lista de tareas: %s",

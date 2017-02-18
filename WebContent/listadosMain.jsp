@@ -50,6 +50,37 @@
 		</table>
 	</form>
 	<br/>
+	<br/>
+	<br/>
+	<br/>
+	<br/>
+	<br/>
+	<h3 align="left"> Añadir una Tarea Nueva </h3>
+	<form action="newTarea" method="post">
+		<br>
+		<table align="left">
+			<tr><td align="left">Nombre de la Tarea:</td></tr>
+			<tr>
+			    <td>
+					<input type="text" id="taskName" name="taskName" />
+				</td>
+			</tr>
+			<tr><td align="left">Categoria de la Tarea:</td></tr>
+			<tr>
+			    <td align="left"><select name="categoria" size="1">
+			    <c:forEach var="entry" items="${listaCategorias}" varStatus="i">
+					<option value="${entry.id}">${entry.name}</option>
+				</c:forEach>
+					<option value="">None</option>
+			    </select></td>
+			</tr>
+			<tr>
+			    <td align="left"><input type="submit"
+					value="Añadir Tarea"></td>
+			</tr>
+		</table>
+	</form>
+	<br/>
 	<table border="1" align="center">
 			<tr>
 				<th>Categoria</th>

@@ -1,5 +1,6 @@
 package uo.sdi.acciones.tasks;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -15,8 +16,8 @@ import uo.sdi.dto.Task;
 import uo.sdi.dto.User;
 import alb.util.log.Log;
 
-public class ListarTareasHoyAction implements Accion {
-
+public class CrearTareaAction implements Accion {
+	
 	@Override
 	public String execute(HttpServletRequest request,
 			HttpServletResponse response) {
@@ -27,29 +28,37 @@ public class ListarTareasHoyAction implements Accion {
 		List<Category> listaCategorias;
 		
 		HttpSession session=request.getSession();
+		User user=((User)session.getAttribute("user"));
+		String listadoActual = ((String)session.getAttribute("listadoActual"));
 		
-		User user = (User)(request.getSession().getAttribute("user"));
-		long userID = user.getId();
+		String categoriaElegida=request.getParameter("categoria");
+		String nombreTarea=request.getParameter("taskName");
 		
 		try {
 			TaskService taskService = Services.getTaskService();
-			listaCategorias=taskService.findCategoriesByUserId(userID);
-			listaTareas=taskService.findTodayTasksByUserId(userID);
-			if (listaTareas.size()==0){
-				Log.debug("No hay lista de tareas para hoy del usuario [%s]", 
-						request.getSession().getAttribute("user"));
-				request.setAttribute("mensajeParaElUsuario", "No tienes tareas para hoy");
-				return "FRACASO";
-			}
-			request.setAttribute("listaTareas", listaTareas);
-			request.setAttribute("listaCategorias", listaCategorias);
-			Log.debug("Obtenida lista de tareas para hoy del usuario [%s]", 
-					request.getSession().getAttribute("user"));
 			
-			session.setAttribute("listadoActual", "Hoy");
+			Task newTask = new Task();
+			newTask.setTitle(nombreTarea);
+			newTask.setUserId(user.getId());
+			
+			if(!categoriaElegida.equals(""))
+					newTask.setCategoryId(Long.parseLong(categoriaElegida));
+			
+			newTask.setCreated(new Date());
+			
+			if(listadoActual.equals("Hoy"))
+				newTask.setPlanned(new Date());
+			
+			taskService.createTask(newTask);
+			
+			listaTareas=taskService.findFinishedInboxTasksByUserId(user.getId());
+			request.setAttribute("listaTareas", listaTareas);
+			
+			listaCategorias=taskService.findCategoriesByUserId(user.getId());
+			request.setAttribute("listaCategorias", listaCategorias);
 		}
 		catch (BusinessException b) {
-			Log.debug("Algo ha ocurrido obteniendo lista de tareas: %s",
+			Log.debug("Algo ha ocurrido creando la tarea: %s",
 					b.getMessage());
 			resultado="FRACASO";
 		}

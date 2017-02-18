@@ -12,6 +12,7 @@ import javax.servlet.http.HttpSession;
 
 import alb.util.log.Log;
 import uo.sdi.acciones.*;
+import uo.sdi.acciones.tasks.CrearTareaAction;
 import uo.sdi.acciones.tasks.ListarTareasHoyAction;
 import uo.sdi.acciones.tasks.ListarTareasInboxAction;
 import uo.sdi.acciones.tasks.ListarTareasPorCategoriaAction;
@@ -134,6 +135,7 @@ public class Controlador extends javax.servlet.http.HttpServlet {
 		mapaRegistrado.put("listarTareasSemana", new ListarTareasSemanaAction());
 		mapaRegistrado.put("listarTareasInbox", new ListarTareasInboxAction());
 		mapaRegistrado.put("listarTareasPorCategoria", new ListarTareasPorCategoriaAction());
+		mapaRegistrado.put("newTarea", new CrearTareaAction());
 		mapaDeAcciones.put("USUARIO", mapaRegistrado);
 		
 		Map<String,Accion> mapaAdmin=new HashMap<String,Accion>();
@@ -143,6 +145,7 @@ public class Controlador extends javax.servlet.http.HttpServlet {
 		mapaAdmin.put("listarTareasSemana", new ListarTareasSemanaAction());
 		mapaAdmin.put("listarTareasInbox", new ListarTareasInboxAction());
 		mapaAdmin.put("listarTareasPorCategoria", new ListarTareasPorCategoriaAction());
+		mapaAdmin.put("newTarea", new CrearTareaAction());
 		mapaAdmin.put("administrarUsuarios", new AdministrarUsuariosAction());
 		mapaDeAcciones.put("ADMIN", mapaAdmin);
 	}
@@ -212,6 +215,11 @@ public class Controlador extends javax.servlet.http.HttpServlet {
 		resultadoYJSP.put("FRACASO","/principalUsuario.jsp");
 		opcionResultadoYJSP.put("listarTareasPorCategoria", resultadoYJSP);
 		
+		resultadoYJSP=new HashMap<String, String>();
+		resultadoYJSP.put("EXITO","/listadosMain.jsp");
+		resultadoYJSP.put("FRACASO","/principalUsuario.jsp");
+		opcionResultadoYJSP.put("newTarea", resultadoYJSP);
+		
 		resultadoYJSP = new HashMap<String, String>();
 		resultadoYJSP.put("EXITO","/principalUsuario.jsp");
 		opcionResultadoYJSP.put("registrarse",resultadoYJSP);
@@ -254,6 +262,11 @@ public class Controlador extends javax.servlet.http.HttpServlet {
 		resultadoYJSP.put("EXITO","/listadosMain.jsp");
 		resultadoYJSP.put("FRACASO","/principalUsuario.jsp");
 		opcionResultadoYJSP.put("listarTareasPorCategoria", resultadoYJSP);
+		
+		resultadoYJSP=new HashMap<String, String>();
+		resultadoYJSP.put("EXITO","/listadosMain.jsp");
+		resultadoYJSP.put("FRACASO","/principalUsuario.jsp");
+		opcionResultadoYJSP.put("newTarea", resultadoYJSP);
 		
 		resultadoYJSP=new HashMap<String,String>();
 		resultadoYJSP.put("EXITO","/administrarUsuarios.jsp");

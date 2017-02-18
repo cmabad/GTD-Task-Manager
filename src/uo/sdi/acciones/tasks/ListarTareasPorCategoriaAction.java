@@ -25,6 +25,7 @@ public class ListarTareasPorCategoriaAction implements Accion {
 		
 		List<Task> listaTareas;
 		List<Category> listaCategorias;
+		
 		String categoriaElegida=request.getParameter("categoria");
 		String filtro = request.getParameter("command");
 		
@@ -67,6 +68,7 @@ public class ListarTareasPorCategoriaAction implements Accion {
 				
 			}
 			request.setAttribute("listaCategorias", listaCategorias);
+			session.setAttribute("listadoActual", "PorCategoria");
 		}
 		catch (BusinessException b) {
 			Log.debug("Algo ha ocurrido obteniendo lista de tareas de Categoria: %s",

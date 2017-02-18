@@ -25,8 +25,10 @@ public class ListarTareasInboxAction implements Accion {
 		
 		List<Task> listaTareas;
 		List<Category> listaCategorias;
+		
 		HttpSession session=request.getSession();
 		User user=((User)session.getAttribute("user"));
+		
 		String filtro = request.getParameter("command");
 		
 		try {
@@ -57,6 +59,8 @@ public class ListarTareasInboxAction implements Accion {
 				Log.debug("Obtenida lista de tareas de Inbox conteniendo [%d] tareas", 
 						listaTareas.size());
 			}
+			
+			session.setAttribute("listadoActual", "Inbox");
 		}
 		catch (BusinessException b) {
 			Log.debug("Algo ha ocurrido obteniendo lista de tareas de Inbox: %s",
