@@ -87,6 +87,7 @@
 				<th>ID</th>
 				<th>Titulo</th>
 				<th>Planeado</th>
+				<th>Editar</th>
 			</tr>
 		<c:forEach var="entry" items="${listaTareas}" varStatus="i">
 			<tr id="item_${i.index}">
@@ -101,6 +102,7 @@
 		                <td> ${entry.planned} </td> 
 		            </c:otherwise>
 		        </c:choose>
+		        <td><a href="irEditarTarea?id=${entry.id}" >Editar</a></td>
 			</tr>
 		</c:forEach>
 	</table>
