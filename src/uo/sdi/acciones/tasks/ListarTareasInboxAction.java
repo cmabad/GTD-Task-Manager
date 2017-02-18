@@ -10,6 +10,7 @@ import uo.sdi.acciones.Accion;
 import uo.sdi.business.Services;
 import uo.sdi.business.TaskService;
 import uo.sdi.business.exception.BusinessException;
+import uo.sdi.dto.Category;
 import uo.sdi.dto.Task;
 import uo.sdi.dto.User;
 import alb.util.log.Log;
@@ -23,6 +24,7 @@ public class ListarTareasInboxAction implements Accion {
 		String resultado="EXITO";
 		
 		List<Task> listaTareas;
+		List<Category> listaCategorias;
 		HttpSession session=request.getSession();
 		User user=((User)session.getAttribute("user"));
 		String filtro = request.getParameter("command");
@@ -32,20 +34,26 @@ public class ListarTareasInboxAction implements Accion {
 				if(filtro.equals("0")) {
 					TaskService taskService = Services.getTaskService();
 					listaTareas=taskService.findFinishedInboxTasksByUserId(user.getId());
-					request.setAttribute("listaTareasInbox", listaTareas);
+					listaCategorias=taskService.findCategoriesByUserId(user.getId());
+					request.setAttribute("listaCategorias", listaCategorias);
+					request.setAttribute("listaTareas", listaTareas);
 					Log.debug("Obtenida lista de tareas de Inbox conteniendo [%d] tareas", 
 							listaTareas.size());
 				} else {
 					TaskService taskService = Services.getTaskService();
 					listaTareas=taskService.findInboxTasksByUserId(user.getId());
-					request.setAttribute("listaTareasInbox", listaTareas);
+					listaCategorias=taskService.findCategoriesByUserId(user.getId());
+					request.setAttribute("listaCategorias", listaCategorias);
+					request.setAttribute("listaTareas", listaTareas);
 					Log.debug("Obtenida lista de tareas de Inbox conteniendo [%d] tareas", 
 							listaTareas.size());
 				}
 			} else {
 				TaskService taskService = Services.getTaskService();
 				listaTareas=taskService.findInboxTasksByUserId(user.getId());
-				request.setAttribute("listaTareasInbox", listaTareas);
+				listaCategorias=taskService.findCategoriesByUserId(user.getId());
+				request.setAttribute("listaCategorias", listaCategorias);
+				request.setAttribute("listaTareas", listaTareas);
 				Log.debug("Obtenida lista de tareas de Inbox conteniendo [%d] tareas", 
 						listaTareas.size());
 			}

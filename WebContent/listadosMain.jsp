@@ -6,7 +6,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
 <html>
 <head>
-<title>TaskManager - Listado de Tareas de esta Semana del Usuario</title>
+<title>TaskManager - Menu Principal de Listados</title>
 <style>
     .red    {
         color: red;
@@ -14,6 +14,18 @@
 </style>
 </head>
 <body>
+	<br/>
+	<br/>
+	<form action="listarTareasInbox" method="post">
+		<input type="radio" name="command" value="0"/>Mostrar Terminadas
+		<input type="radio" name="command" value="1" checked/>Mostrar Sin Terminar
+		<input type="submit" value="Mostrar Tareas de Inbox Filtradas Tareas">
+	</form>
+	<br/>
+	<a id="listarTareas" href="listarTareas">Mostrar Tareas Hoy</a>
+	<br/>
+	<a id="listarTareasSemana" href="listarTareasSemana">Mostrar Tareas de esta Semana</a>
+	<br/>
 	<form action="listarTareasPorCategoria" method="post">
 		<br>
 		<table align="left">
@@ -28,17 +40,16 @@
 			<tr>
 			    <td>
 					<input type="radio" name="command" value="0"/>Mostrar Terminadas
-					<input type="radio" name="command" value="1"/>Mostrar Sin Terminar
+					<input type="radio" name="command" value="1" checked/>Mostrar Sin Terminar
 				</td>
 			</tr>
 			<tr>
 			    <td align="left"><input type="submit"
-					value="Buscar Tareas"></td>
+					value="Buscar Tareas Por Categoria"></td>
 			</tr>
 		</table>
 	</form>
-	<br>
-	<br>
+	<br/>
 	<table border="1" align="center">
 			<tr>
 				<th>Categoria</th>
@@ -46,7 +57,7 @@
 				<th>Titulo</th>
 				<th>Planeado</th>
 			</tr>
-		<c:forEach var="entry" items="${listaTareasPorCategoria}" varStatus="i">
+		<c:forEach var="entry" items="${listaTareas}" varStatus="i">
 			<tr id="item_${i.index}">
 				<td>${entry.categoryId}</td>
 				<td>${entry.id}</td>

@@ -40,19 +40,19 @@ public class ListarTareasPorCategoriaAction implements Accion {
 				if(filtro!=null) {
 					if(filtro.equals("0")) {
 						listaTareas=taskService.findFinishedTasksByCategoryId(Long.parseLong(categoriaElegida));
-						request.setAttribute("listaTareasPorCategoria", listaTareas);
+						request.setAttribute("listaTareas", listaTareas);
 						Log.debug("Obtenida lista de tareas de Categoria conteniendo [%d] tareas", 
 								listaTareas.size());
 					} else {
 						listaTareas=taskService.findTasksByCategoryId(Long.parseLong(categoriaElegida));
-						request.setAttribute("listaTareasPorCategoria", listaTareas);
+						request.setAttribute("listaTareas", listaTareas);
 						Log.debug("Obtenida lista de tareas de Categoria conteniendo [%d] tareas", 
 								listaTareas.size());
 					}		
 				} else {
 
 					listaTareas=taskService.findTasksByCategoryId(Long.parseLong(categoriaElegida));
-					request.setAttribute("listaTareasPorCategoria", listaTareas);
+					request.setAttribute("listaTareas", listaTareas);
 					
 					Log.debug("Obtenida lista de tareas de Categoria conteniendo [%d] tareas", 
 							listaTareas.size());
@@ -61,7 +61,7 @@ public class ListarTareasPorCategoriaAction implements Accion {
 			} else {
 				
 				listaTareas=taskService.findTasksByCategoryId((long) -1);
-				request.setAttribute("listaTareasPorCategoria", listaTareas);
+				request.setAttribute("listaTareas", listaTareas);
 				Log.debug("Obtenida lista de tareas de Categoria conteniendo [%d] tareas", 
 						listaTareas.size());
 				

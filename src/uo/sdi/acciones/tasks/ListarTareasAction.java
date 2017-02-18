@@ -10,6 +10,7 @@ import uo.sdi.acciones.Accion;
 import uo.sdi.business.Services;
 import uo.sdi.business.TaskService;
 import uo.sdi.business.exception.BusinessException;
+import uo.sdi.dto.Category;
 import uo.sdi.dto.Task;
 import uo.sdi.dto.User;
 import alb.util.log.Log;
@@ -23,12 +24,15 @@ public class ListarTareasAction implements Accion {
 		String resultado="EXITO";
 		
 		List<Task> listaTareas;
+		List<Category> listaCategorias;
 		HttpSession session=request.getSession();
 		User user=((User)session.getAttribute("user"));
 		
 		try {
 			TaskService taskService = Services.getTaskService();
 			listaTareas=taskService.findTodayTasksByUserId(user.getId());
+			listaCategorias=taskService.findCategoriesByUserId(user.getId());
+			request.setAttribute("listaCategorias", listaCategorias);
 			request.setAttribute("listaTareas", listaTareas);
 			Log.debug("Obtenida lista de tareas conteniendo [%d] tareas", 
 					listaTareas.size());
