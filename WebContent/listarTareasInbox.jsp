@@ -14,6 +14,12 @@
 </style>
 </head>
 <body>
+	<form action="listarTareasInbox" method="post">
+		<input type="radio" name="command" value="0"/>Mostrar Terminadas
+		<input type="radio" name="command" value="1"/>Mostrar Sin Terminar
+		<input type="submit" value="Filtrar Tareas">
+	</form>
+
 	<table border="1" align="center">
 			<tr>
 				<th>ID</th>
@@ -22,7 +28,7 @@
 			</tr>
 		<c:forEach var="entry" items="${listaTareasInbox}" varStatus="i">
 			<tr id="item_${i.index}">
-				<td><a href="mostrarTareas?id=${entry.id}">${entry.id}</a></td>
+				<td>${entry.id}</td>
 				<td>${entry.title}</td>
 				 <c:choose>
 		            <c:when test="${entry.planned le today}">

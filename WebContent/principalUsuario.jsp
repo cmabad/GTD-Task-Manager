@@ -56,6 +56,8 @@
 	<br/>
 	<a id="listarTareasSemana" href="listarTareasSemana">Mostrar Tareas de esta Semana</a>
 	<br/>
+	<a id="listarTareasPorCategoria" href="listarTareasPorCategoria">Filtrar Tareas Por Categoria</a>
+	<br/>
 	<%  User userAdmin = (User) request.getSession().getAttribute("user");
 		if (userAdmin.getIsAdmin()){
 			out.print("<a id=\"administrarUsuarios_link_id\" href=\"administrarUsuarios\">Administrar usuarios</a>");

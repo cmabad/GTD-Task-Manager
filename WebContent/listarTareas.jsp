@@ -23,7 +23,7 @@
 			</tr>
 		<c:forEach var="entry" items="${listaTareas}" varStatus="i">
 			<tr id="item_${i.index}">
-				<td><a href="mostrarTareas?id=${entry.id}">${entry.id}</a></td>
+				<td>${entry.id}</td>
 				<c:forEach var="cat" items="${listaCategorias}" varStatus="j">
 				<c:choose>
 					<c:when test="${cat.id eq entry.categoryId}">

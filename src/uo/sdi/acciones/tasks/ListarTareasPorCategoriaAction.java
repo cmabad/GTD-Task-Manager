@@ -4,12 +4,15 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import uo.sdi.acciones.Accion;
 import uo.sdi.business.Services;
 import uo.sdi.business.TaskService;
 import uo.sdi.business.exception.BusinessException;
+import uo.sdi.dto.Category;
 import uo.sdi.dto.Task;
+import uo.sdi.dto.User;
 import alb.util.log.Log;
 
 public class ListarTareasPorCategoriaAction implements Accion {
@@ -21,16 +24,49 @@ public class ListarTareasPorCategoriaAction implements Accion {
 		String resultado="EXITO";
 		
 		List<Task> listaTareas;
-		//HttpSession session=request.getSession();
-		//User user=((User)session.getAttribute("user"));
-		long category = (Long) request.getAttribute("category_ID");
+		List<Category> listaCategorias;
+		String categoriaElegida=request.getParameter("categoria");
+		String filtro = request.getParameter("command");
+		
+		HttpSession session=request.getSession();
+		User user=((User)session.getAttribute("user"));
 		
 		try {
 			TaskService taskService = Services.getTaskService();
-			listaTareas=taskService.findTasksByCategoryId(category);
-			request.setAttribute("listaTareasPorCategoria", listaTareas);
-			Log.debug("Obtenida lista de tareas de Categoria conteniendo [%d] tareas", 
-					listaTareas.size());
+			listaCategorias=taskService.findCategoriesByUserId(user.getId());
+			
+			if(categoriaElegida!=null ) {
+				
+				if(filtro!=null) {
+					if(filtro.equals("0")) {
+						listaTareas=taskService.findFinishedTasksByCategoryId(Long.parseLong(categoriaElegida));
+						request.setAttribute("listaTareasPorCategoria", listaTareas);
+						Log.debug("Obtenida lista de tareas de Categoria conteniendo [%d] tareas", 
+								listaTareas.size());
+					} else {
+						listaTareas=taskService.findTasksByCategoryId(Long.parseLong(categoriaElegida));
+						request.setAttribute("listaTareasPorCategoria", listaTareas);
+						Log.debug("Obtenida lista de tareas de Categoria conteniendo [%d] tareas", 
+								listaTareas.size());
+					}		
+				} else {
+
+					listaTareas=taskService.findTasksByCategoryId(Long.parseLong(categoriaElegida));
+					request.setAttribute("listaTareasPorCategoria", listaTareas);
+					
+					Log.debug("Obtenida lista de tareas de Categoria conteniendo [%d] tareas", 
+							listaTareas.size());
+				}
+				
+			} else {
+				
+				listaTareas=taskService.findTasksByCategoryId((long) -1);
+				request.setAttribute("listaTareasPorCategoria", listaTareas);
+				Log.debug("Obtenida lista de tareas de Categoria conteniendo [%d] tareas", 
+						listaTareas.size());
+				
+			}
+			request.setAttribute("listaCategorias", listaCategorias);
 		}
 		catch (BusinessException b) {
 			Log.debug("Algo ha ocurrido obteniendo lista de tareas de Categoria: %s",

@@ -25,13 +25,30 @@ public class ListarTareasInboxAction implements Accion {
 		List<Task> listaTareas;
 		HttpSession session=request.getSession();
 		User user=((User)session.getAttribute("user"));
+		String filtro = request.getParameter("command");
 		
 		try {
-			TaskService taskService = Services.getTaskService();
-			listaTareas=taskService.findInboxTasksByUserId(user.getId());
-			request.setAttribute("listaTareasInbox", listaTareas);
-			Log.debug("Obtenida lista de tareas de Inbox conteniendo [%d] tareas", 
-					listaTareas.size());
+			if(filtro!=null) {
+				if(filtro.equals("0")) {
+					TaskService taskService = Services.getTaskService();
+					listaTareas=taskService.findFinishedInboxTasksByUserId(user.getId());
+					request.setAttribute("listaTareasInbox", listaTareas);
+					Log.debug("Obtenida lista de tareas de Inbox conteniendo [%d] tareas", 
+							listaTareas.size());
+				} else {
+					TaskService taskService = Services.getTaskService();
+					listaTareas=taskService.findInboxTasksByUserId(user.getId());
+					request.setAttribute("listaTareasInbox", listaTareas);
+					Log.debug("Obtenida lista de tareas de Inbox conteniendo [%d] tareas", 
+							listaTareas.size());
+				}
+			} else {
+				TaskService taskService = Services.getTaskService();
+				listaTareas=taskService.findInboxTasksByUserId(user.getId());
+				request.setAttribute("listaTareasInbox", listaTareas);
+				Log.debug("Obtenida lista de tareas de Inbox conteniendo [%d] tareas", 
+						listaTareas.size());
+			}
 		}
 		catch (BusinessException b) {
 			Log.debug("Algo ha ocurrido obteniendo lista de tareas de Inbox: %s",

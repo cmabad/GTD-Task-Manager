@@ -27,6 +27,7 @@ public class ValidarseAction implements Accion {
 			try {
 				userByLogin = userService.findLoggableUser(nombreUsuario, 
 						password);
+				
 			} catch (BusinessException b) {
 				session.invalidate();
 				Log.debug("Algo ha ocurrido intentando iniciar sesión [%s]: %s", 
@@ -42,6 +43,7 @@ public class ValidarseAction implements Accion {
 						String.valueOf(contador+1));
 				session.setAttribute("fechaInicioSesion", new java.util.Date());
 				Log.info("El usuario [%s] ha iniciado sesión",nombreUsuario);
+				
 			}
 			else {
 				session.invalidate();
