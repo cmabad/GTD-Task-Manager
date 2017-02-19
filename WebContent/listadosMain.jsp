@@ -16,6 +16,7 @@
 <body>
 	<br/>
 	<!--  <a id="volver_link_id" href="principalUsuario.jsp">Volver</a> -->
+	<h3 align="left"> Listados de Tareas </h3>
 	<br/>
 	<form action="listarTareasInbox" method="post">
 		<input type="radio" name="command" value="0"/>Mostrar Terminadas
@@ -82,13 +83,52 @@
 		</table>
 	</form>
 	<br/>
+	<br/>
+	<br/>
+	<br/>
+	<br/>
+	<br/>
+	<h3 align="left"> Editor de Categorias </h3>
+	<form action="editarCategoria" method="post">
+		<br>
+		<table align="left">
+			<tr><td align="left">Categoria a Editar:</td></tr>
+			<tr>
+			    <td align="left"><select name="categoria" size="1">
+			    <c:forEach var="entry" items="${listaCategorias}" varStatus="i">
+					<option value="${entry.id}">${entry.name}</option>
+				</c:forEach>
+					<option value="new">New</option>
+			    </select></td>
+			</tr>
+			<tr><td align="left">Nuevo Nombre de la Categoria:</td></tr>
+			<tr>
+			    <td>
+					<input type="text" id="categoryName" name="categoryName" />
+				</td>
+			</tr>
+			<tr><td align="left">Desea Eliminar la categoria?:</td></tr>
+			<tr>
+			    <td>
+					<input type="radio" name="command" value="1"/>Si
+					<input type="radio" name="command" value="0" checked/>No
+				</td>
+			</tr>
+			<tr>
+			    <td align="left"><input type="submit"
+					value="Comfirmar Cambios"></td>
+			</tr>
+		</table>
+	</form>
+	<br/>
 	<table border="1" align="center">
 			<tr>
 				<th>Categoria</th>
 				<th>ID</th>
 				<th>Titulo</th>
 				<th>Planeado</th>
-				<th>Editar</th>
+				<th>Opciones</th>
+				<th> </th>
 			</tr>
 		<c:forEach var="entry" items="${listaTareas}" varStatus="i">
 			<tr id="item_${i.index}">
@@ -104,6 +144,7 @@
 		            </c:otherwise>
 		        </c:choose>
 		        <td><a href="irEditarTarea?id=${entry.id}" >Editar</a></td>
+		        <td><a href="finalizarTarea?id=${entry.id}" >Finalizar</a></td>
 			</tr>
 		</c:forEach>
 	</table>

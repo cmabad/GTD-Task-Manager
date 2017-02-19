@@ -53,10 +53,13 @@ public class EditarTareaAction implements Accion {
 			TaskService taskService = Services.getTaskService();
 			Task task = ((Task)taskService.findTaskById(Long.parseLong(id)));
 			
-			task.setTitle(nombreTarea);
+			if(!"".equals(nombreTarea))
+				task.setTitle(nombreTarea);
 			
 			if(!"".equals(categoriaElegida))
 				task.setCategoryId(Long.parseLong(categoriaElegida));
+			else
+				task.setCategoryId(null);
 			
 			if(fechaPlaneadaTarea!=null)
 				task.setPlanned(fechaPlaneadaTarea);
@@ -65,7 +68,7 @@ public class EditarTareaAction implements Accion {
 
 			taskService.updateTask(task);
 			
-			listaTareas=taskService.findFinishedInboxTasksByUserId(user.getId());
+			listaTareas=taskService.findInboxTasksByUserId(user.getId());
 			request.setAttribute("listaTareas", listaTareas);
 			
 			listaCategorias=taskService.findCategoriesByUserId(user.getId());

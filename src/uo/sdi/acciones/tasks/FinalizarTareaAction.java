@@ -1,6 +1,5 @@
 package uo.sdi.acciones.tasks;
 
-import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -16,7 +15,7 @@ import uo.sdi.dto.Task;
 import uo.sdi.dto.User;
 import alb.util.log.Log;
 
-public class CrearTareaAction implements Accion {
+public class FinalizarTareaAction implements Accion {
 	
 	@Override
 	public String execute(HttpServletRequest request,
@@ -29,27 +28,11 @@ public class CrearTareaAction implements Accion {
 		
 		HttpSession session=request.getSession();
 		User user=((User)session.getAttribute("user"));
-		String listadoActual = ((String)session.getAttribute("listadoActual"));
-		
-		String categoriaElegida=request.getParameter("categoria");
-		String nombreTarea=request.getParameter("taskName");
+		String id = request.getParameter("id");
 		
 		try {
 			TaskService taskService = Services.getTaskService();
-			
-			Task newTask = new Task();
-			newTask.setTitle(nombreTarea);
-			newTask.setUserId(user.getId());
-			
-			if(!"".equals(categoriaElegida))
-					newTask.setCategoryId(Long.parseLong(categoriaElegida));
-			
-			newTask.setCreated(new Date());
-			
-			if("Hoy".equals(listadoActual))
-				newTask.setPlanned(new Date());
-			
-			taskService.createTask(newTask);
+			taskService.markTaskAsFinished(Long.parseLong(id));
 			
 			listaTareas=taskService.findInboxTasksByUserId(user.getId());
 			request.setAttribute("listaTareas", listaTareas);
@@ -58,7 +41,7 @@ public class CrearTareaAction implements Accion {
 			request.setAttribute("listaCategorias", listaCategorias);
 		}
 		catch (BusinessException b) {
-			Log.debug("Algo ha ocurrido creando la tarea: %s",
+			Log.debug("Algo ha ocurrido marcando como terminada la tarea: %s",
 					b.getMessage());
 			resultado="FRACASO";
 		}

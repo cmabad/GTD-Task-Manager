@@ -12,6 +12,7 @@ import uo.sdi.business.Services;
 import uo.sdi.business.TaskService;
 import uo.sdi.business.exception.BusinessException;
 import uo.sdi.dto.Category;
+import uo.sdi.dto.Task;
 import uo.sdi.dto.User;
 
 public class IrEditarTareaAction implements Accion {
@@ -24,6 +25,7 @@ public class IrEditarTareaAction implements Accion {
 		String id = request.getParameter("id");
 		
 		List<Category> listaCategorias;
+		Task task;
 		
 		HttpSession session=request.getSession();
 		User user=((User)session.getAttribute("user"));
@@ -31,7 +33,10 @@ public class IrEditarTareaAction implements Accion {
 		try {
 			TaskService taskService = Services.getTaskService();
 			listaCategorias=taskService.findCategoriesByUserId(user.getId());
+			task=taskService.findTaskById(Long.parseLong(id));
+			
 			request.setAttribute("listaCategorias", listaCategorias);
+			request.setAttribute("task", task);
 		}
 		catch (BusinessException b) {
 			Log.debug("Algo ha ocurrido escogiendo la tarea: %s",

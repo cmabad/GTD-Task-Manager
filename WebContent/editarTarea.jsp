@@ -12,17 +12,17 @@
  	<table align="center">
     	<tr> 
     		<td align="right">Nombre de la Tarea: </td>
-	    	<td><input type="text" name="newTaskName" align="left" size="50"></td>
+	    	<td><input type="text" name="newTaskName" align="left" size="50" value="${task.title}"> </td>
       	</tr>
       	<tr> 
     		<td align="right">Comentario de la Tarea: </td>
-	    	<td><input type="text" name="newTaskComment" align="left" size="50"></td>
+	    	<td><input type="text" name="newTaskComment" align="left" size="50" value="${task.comments}"></td>
       	</tr>
       	<tr> 
     		<td align="right">Fecha Planeada de la Tarea (formato dd-MMM-yyyy): </td>
-	    	<td><input type="text" name="newFechaPlaneada" align="left" size="50"></td>
+	    	<td><input type="text" name="newFechaPlaneada" align="left" size="50" value="${task.planned}"></td>
       	</tr>
-      	<tr><td align="right">Categoria de la Tarea:</td></tr>
+      	<tr><td align="right">Nueva Categoria de la Tarea:</td></tr>
 			<tr>
 			    <td align="right"><select name="categoria" size="1">
 			    <c:forEach var="entry" items="${listaCategorias}" varStatus="i">
