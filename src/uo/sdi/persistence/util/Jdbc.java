@@ -28,6 +28,8 @@ public class Jdbc {
 	private static Properties sqlQueries;
 	private static DataSource dataSource;
 	
+	private static ThreadLocal<Connection> threadLocal = new ThreadLocal<>();
+
 	static {
 		Properties dbConfig = loadProperties( DATABASE_PROPERTIES_FILE );
 		sqlQueries = loadProperties( QUERIES_PROPERTIES_FILE );
@@ -49,7 +51,6 @@ public class Jdbc {
 		return ds;
 	}
 
-	private static ThreadLocal<Connection> threadLocal = new ThreadLocal<>();
 
 	public static Connection createConnection() {
 		try {

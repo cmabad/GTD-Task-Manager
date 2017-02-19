@@ -39,7 +39,7 @@ public class ListarTareasPorCategoriaAction implements Accion {
 			if(categoriaElegida!=null ) {
 				
 				if(filtro!=null) {
-					if(filtro.equals("0")) {
+					if("0".equals(filtro)) {
 						listaTareas=taskService.findFinishedTasksByCategoryId(Long.parseLong(categoriaElegida));
 						request.setAttribute("listaTareas", listaTareas);
 						Log.debug("Obtenida lista de tareas de Categoria conteniendo [%d] tareas", 

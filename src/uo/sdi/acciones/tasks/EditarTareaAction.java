@@ -55,7 +55,7 @@ public class EditarTareaAction implements Accion {
 			
 			task.setTitle(nombreTarea);
 			
-			if(!categoriaElegida.equals(""))
+			if(!"".equals(categoriaElegida))
 				task.setCategoryId(Long.parseLong(categoriaElegida));
 			
 			if(fechaPlaneadaTarea!=null)

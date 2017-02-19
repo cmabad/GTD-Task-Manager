@@ -11,8 +11,11 @@ import uo.sdi.persistence.util.RowMapper;
 
 public class CategoryDaoJdbcImpl implements CategoryDao {
 
-	public class CategoryDtoMapper implements RowMapper<Category> {
+	private JdbcTemplate jdbcTemplate = new JdbcTemplate();
 
+	
+	public class CategoryDtoMapper implements RowMapper<Category> {
+		
 		@Override
 		public Category toObject(ResultSet rs) throws SQLException {
 			return new Category()
@@ -22,8 +25,6 @@ public class CategoryDaoJdbcImpl implements CategoryDao {
 		}
 	}
 	
-	private JdbcTemplate jdbcTemplate = new JdbcTemplate();
-
 	@Override
 	public Long save(Category dto) {
 		jdbcTemplate.execute("CATEGORY_INSERT",	

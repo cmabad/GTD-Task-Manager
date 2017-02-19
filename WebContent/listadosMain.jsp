@@ -15,6 +15,7 @@
 </head>
 <body>
 	<br/>
+	<!--  <a id="volver_link_id" href="principalUsuario.jsp">Volver</a> -->
 	<br/>
 	<form action="listarTareasInbox" method="post">
 		<input type="radio" name="command" value="0"/>Mostrar Terminadas

@@ -32,7 +32,7 @@ public class BusinessCheck {
 	}
 
 	public static void isTrue(boolean condition, String errorMsg) throws BusinessException {
-		if ( condition == true ) return;
+		if ( condition ) return;
 		throw new BusinessException( errorMsg );
 	}
 

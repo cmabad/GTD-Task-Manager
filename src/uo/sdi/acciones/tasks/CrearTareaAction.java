@@ -41,12 +41,12 @@ public class CrearTareaAction implements Accion {
 			newTask.setTitle(nombreTarea);
 			newTask.setUserId(user.getId());
 			
-			if(!categoriaElegida.equals(""))
+			if(!"".equals(categoriaElegida))
 					newTask.setCategoryId(Long.parseLong(categoriaElegida));
 			
 			newTask.setCreated(new Date());
 			
-			if(listadoActual.equals("Hoy"))
+			if("Hoy".equals(listadoActual))
 				newTask.setPlanned(new Date());
 			
 			taskService.createTask(newTask);

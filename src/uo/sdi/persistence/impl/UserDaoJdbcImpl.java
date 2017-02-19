@@ -12,6 +12,8 @@ import uo.sdi.persistence.util.RowMapper;
 
 public class UserDaoJdbcImpl implements UserDao {
 
+	private	JdbcTemplate jdbcTemplate = new JdbcTemplate();
+
 	public class UserMapper implements RowMapper<User> {
 		@Override
 		public User toObject(ResultSet rs) throws SQLException {
@@ -25,8 +27,6 @@ public class UserDaoJdbcImpl implements UserDao {
 		}
 	}
 	
-	private	JdbcTemplate jdbcTemplate = new JdbcTemplate();
-
 	@Override
 	public Long save(User dto) {
 		jdbcTemplate.execute("USER_INSERT", 

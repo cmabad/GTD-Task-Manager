@@ -32,34 +32,19 @@ public class ListarTareasInboxAction implements Accion {
 		String filtro = request.getParameter("command");
 		
 		try {
-			if(filtro!=null) {
-				if(filtro.equals("0")) {
-					TaskService taskService = Services.getTaskService();
-					listaTareas=taskService.findFinishedInboxTasksByUserId(user.getId());
-					listaCategorias=taskService.findCategoriesByUserId(user.getId());
-					request.setAttribute("listaCategorias", listaCategorias);
-					request.setAttribute("listaTareas", listaTareas);
-					Log.debug("Obtenida lista de tareas de Inbox conteniendo [%d] tareas", 
-							listaTareas.size());
-				} else {
-					TaskService taskService = Services.getTaskService();
-					listaTareas=taskService.findInboxTasksByUserId(user.getId());
-					listaCategorias=taskService.findCategoriesByUserId(user.getId());
-					request.setAttribute("listaCategorias", listaCategorias);
-					request.setAttribute("listaTareas", listaTareas);
-					Log.debug("Obtenida lista de tareas de Inbox conteniendo [%d] tareas", 
-							listaTareas.size());
-				}
-			} else {
-				TaskService taskService = Services.getTaskService();
-				listaTareas=taskService.findInboxTasksByUserId(user.getId());
-				listaCategorias=taskService.findCategoriesByUserId(user.getId());
-				request.setAttribute("listaCategorias", listaCategorias);
-				request.setAttribute("listaTareas", listaTareas);
-				Log.debug("Obtenida lista de tareas de Inbox conteniendo [%d] tareas", 
-						listaTareas.size());
-			}
+			TaskService taskService = Services.getTaskService();
 			
+			if(filtro!= null && "0".equals(filtro)) 
+				listaTareas=taskService.findFinishedInboxTasksByUserId(user.getId());
+			else 
+				listaTareas=taskService.findInboxTasksByUserId(user.getId());
+				
+			listaCategorias=taskService.findCategoriesByUserId(user.getId());
+			request.setAttribute("listaCategorias", listaCategorias);
+			request.setAttribute("listaTareas", listaTareas);
+			Log.debug("Obtenida lista de tareas de Inbox conteniendo [%d] tareas", 
+					listaTareas.size());
+						
 			session.setAttribute("listadoActual", "Inbox");
 		}
 		catch (BusinessException b) {

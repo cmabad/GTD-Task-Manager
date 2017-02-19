@@ -34,8 +34,8 @@ public class ModificarDatosAction implements Accion {
 		
 		if(oldPassword!=null && newPassword!=null && newPassword2!=null)
 		{
-			if(oldPassword.trim().equals(userClone.getPassword()))
-				if(newPassword.trim().equals(newPassword2.trim()))
+			if(oldPassword.trim().equals(userClone.getPassword()) && 
+				newPassword.trim().equals(newPassword2.trim()))
 					userClone.setPassword(newPassword);
 		}
 		try {
