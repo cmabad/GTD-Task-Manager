@@ -26,17 +26,33 @@
 				<td>${entry.id}</td>
 				<td>${entry.email}</td>
 				<td>${entry.login}</td>
-				<td>${entry.status}</td>
-				<!-- <c:if test="${entry.status==enabled}">
+				<td>${entry.status}</td> 
+				
+				<%-- <td>
+				 <c:choose>
+					<c:when test="${entry.status=='enabled'}">
 					
-				</c:if> -->
+						<input type=checkbox 
+							name=<c:out value="${entry.id}"/>
+							checked="checked"/>
+					
+					</c:when>
+					<c:otherwise>
+						
+						<input type=checkbox 
+							name=<c:out value="${entry.id}"/>/>
+						
+					</c:otherwise>
+				</c:choose>
+				</td>
+				 --%>
 				<%
 					//String checkbox = ${entry.status}.equals("enabled")?
 						//	"checked" : "";
-					//out.print("<form action=/finAdministrarUsuarios\">"
+					//out.print("<form action=/finAdministrarUsuarios\">");
 					//out.print("<input type=\"checkbox\" name=\"\" value="+
-					//	"\"Bike\"> I have a bike<br>
-				//out.prin("<td>"
+						//"\"Bike\"> I have a bike<br>
+				//out.print("<td>");
 				%>
 			</tr>
 		</c:forEach>
