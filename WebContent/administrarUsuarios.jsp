@@ -26,26 +26,23 @@
 				<td>${entry.id}</td>
 				<td>${entry.email}</td>
 				<td>${entry.login}</td>
-				<td>${entry.status}</td> 
 				
-				<%-- <td>
+				<td>
 				 <c:choose>
-					<c:when test="${entry.status=='enabled'}">
-					
-						<input type=checkbox 
-							name=<c:out value="${entry.id}"/>
-							checked="checked"/>
-					
+					<c:when test="${entry.status eq 'ENABLED'}">
+			
+					<a href="cambioStatusUsuario?nuevo=dis&id=${entry.id}&login=${entry.email}">Deshabilitar</a>
+			
 					</c:when>
 					<c:otherwise>
 						
-						<input type=checkbox 
-							name=<c:out value="${entry.id}"/>/>
+					<a href="cambioStatusUsuario?nuevo=en&id=${entry.id}&login=${entry.email}">Habilitar</a>
+
 						
 					</c:otherwise>
 				</c:choose>
 				</td>
-				 --%>
+				
 				<%
 					//String checkbox = ${entry.status}.equals("enabled")?
 						//	"checked" : "";

@@ -5,6 +5,8 @@ import java.util.List;
 import uo.sdi.business.UserService;
 import uo.sdi.business.exception.BusinessException;
 import uo.sdi.business.impl.command.CommandExecutor;
+import uo.sdi.business.impl.user.command.DisableUser;
+import uo.sdi.business.impl.user.command.EnableUser;
 import uo.sdi.business.impl.user.command.FindLoggableUSerCommand;
 import uo.sdi.business.impl.user.command.ListUsersCommand;
 import uo.sdi.business.impl.user.command.RegisterUserCommand;
@@ -39,6 +41,17 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public List<User> listUsers() throws BusinessException {
 		return new CommandExecutor<List<User>>().execute(new ListUsersCommand());
+	}
+
+	@Override
+	public void enableUser(Long id) throws BusinessException {
+		new CommandExecutor<Void>().execute(new EnableUser(id));
+	}
+
+	@Override
+	public void disableUser(Long id) throws BusinessException {
+		new CommandExecutor<Void>().execute(new DisableUser(id));
+
 	}
 
 }

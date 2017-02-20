@@ -11,4 +11,6 @@ public interface UserService {
 	public void updateUserDetails(User user) throws BusinessException;
 	public User findLoggableUser(String login, String password) throws BusinessException;
 	public List<User> listUsers() throws BusinessException;
+	public void enableUser(Long id) throws BusinessException;
+	public void disableUser(Long id) throws BusinessException;
 }

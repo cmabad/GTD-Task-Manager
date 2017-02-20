@@ -92,4 +92,20 @@ public class UserDaoJdbcImpl implements UserDao {
 			);
 	}
 
+	@Override
+	public void enableUser(Long id) {
+		jdbcTemplate.execute("USER_UPDATE_STATUS", 
+				"ENABLED",
+				id
+			);		
+	}
+
+	@Override
+	public void disableUser(Long id) {
+		jdbcTemplate.execute("USER_UPDATE_STATUS", 
+				"DISABLED",
+				id
+			);
+	}
+
 }
