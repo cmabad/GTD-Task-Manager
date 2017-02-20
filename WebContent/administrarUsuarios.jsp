@@ -20,13 +20,15 @@
 				<th>Email</th>
 				<th>Login</th>
 				<th>Status</th>
+				<th>Eliminar</th>
+				
 			</tr>
 		<c:forEach var="entry" items="${listaUsuarios}" varStatus="i">
 			<tr id="item_${i.index}">
 				<td>${entry.id}</td>
 				<td>${entry.email}</td>
 				<td>${entry.login}</td>
-				
+			
 				<td>
 				 <c:choose>
 					<c:when test="${entry.status eq 'ENABLED'}">
@@ -43,14 +45,7 @@
 				</c:choose>
 				</td>
 				
-				<%
-					//String checkbox = ${entry.status}.equals("enabled")?
-						//	"checked" : "";
-					//out.print("<form action=/finAdministrarUsuarios\">");
-					//out.print("<input type=\"checkbox\" name=\"\" value="+
-						//"\"Bike\"> I have a bike<br>
-				//out.print("<td>");
-				%>
+				<td><a href="eliminarUsuario?id=${entry.id}&login=${entry.login}">Eliminar Usuario</a></td>
 			</tr>
 		</c:forEach>
 	</table>
