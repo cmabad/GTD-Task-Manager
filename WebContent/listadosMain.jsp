@@ -94,7 +94,7 @@
 		<table align="left">
 			<tr><td align="left">Categoria a Editar:</td></tr>
 			<tr>
-			    <td align="left"><select name="categoriaEdit" size="1">
+			    <td align="left"><select name="categoria" size="1">
 			    <c:forEach var="entry" items="${listaCategorias}" varStatus="i">
 					<option value="${entry.id}">${entry.name}</option>
 				</c:forEach>

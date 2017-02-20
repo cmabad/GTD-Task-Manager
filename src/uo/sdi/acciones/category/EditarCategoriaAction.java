@@ -26,7 +26,7 @@ public class EditarCategoriaAction implements Accion {
 		List<Task> listaTareas;
 		List<Category> listaCategorias;
 		
-		String categoriaElegida=request.getParameter("categoriaEdit");
+		String categoriaElegida=request.getParameter("categoria");
 		String eliminar = request.getParameter("command");
 		String nombreCategoria = request.getParameter("categoryName");
 		
